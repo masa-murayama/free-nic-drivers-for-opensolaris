@@ -2,11 +2,9 @@
 # Common configuration infomations for all platforms
 #
 DRV	= icpt
-ONUTSDIR = /home/mrym/opensolaris/ws-b124/usr/src/uts
 include version
 
 DFLAGS	= -DDEBUG -DDEBUG_LEVEL=1 -UGEM_DEBUG_LEVEL -UTEST_CRCERR \
-	  -I ${ONUTSDIR}/common -I ${ONUTSDIR}/intel \
 	  -erroff=E_STATEMENT_NOT_REACHED,E_INTEGER_OVERFLOW_DETECTED
 
 CFGFLAGS = -DGEM_CONFIG_POLLING -DGEM_CONFIG_GLDv3 -DGEM_CONFIG_VLAN_HW \
