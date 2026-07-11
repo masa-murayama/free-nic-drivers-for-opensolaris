@@ -1,0 +1,25 @@
+
+#
+# Copyright (c) 1996,1997, by Sun Microsystems, Inc.
+# All Rights Reserved
+#
+#ident	"@(#)Makefile	1.4	97/09/08 SMI"
+#
+
+TOP= ..
+
+include $(TOP)/Makefile.master
+
+.KEEP_STATE:
+
+MOD=ae
+
+OBJS=	ae.o
+
+MOD_CONF= $(MOD:%=%.conf)
+
+all: $(MOD)
+
+include $(TOP)/Makefile.driver
+
+CFLAGS += -D$(INST) $(ENVCPPFLAGS1) $(ENVCPPFLAGS2)

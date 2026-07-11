@@ -1,0 +1,16 @@
+2007/01/07
+	2.4.0 release
+2007/01/18
+	tx checksum offloading flag in format 2 fixed
+2007/01/20
+	mii_an_oneshot changed (TRUE->FALSE)
+2007/01/20
+	2.4.1 release
+2007/05/02
+	2.4.3 release
+2007/08/10
+	2.4.4 release
+2007/10/14
+	missing flush after writing imr* and isr
+2008/02/03
+	2.6.0 release for all nforce chipset

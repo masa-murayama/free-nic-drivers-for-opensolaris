@@ -1,0 +1,15 @@
+*******************************************************************
+* Change log
+*******************************************************************
+03/20/2006
+	macro nests releated on USE_FRAMEID fixed
+	it caused compile time error with old gcc version.
+11/04/2006
+	changes for gem 2.4.x framework
+
+02/18/2007
+	2.4.0 released
+09/05/2007
+	2.6.0
+09/22/2007
+	clean up

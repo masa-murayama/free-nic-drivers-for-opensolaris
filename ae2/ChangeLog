@@ -1,0 +1,10 @@
+/*
+ *  Changelog:
+ 2007/02/17	ae_nomii_read fixed. VMware doesn't rise LEDOUT_LED bit.
+		thank to Erast Benson for the report and the test.
+ 2007/04/17	set_rx_filter, mii_linkdown_action fixed
+ 2007/04/17	2.4.2 release
+ 2007/09/16	2.6.0
+
+ */
+

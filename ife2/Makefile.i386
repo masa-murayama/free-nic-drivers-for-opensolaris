@@ -1,0 +1,18 @@
+include ./version
+BINDIR	= ./i386
+INSTALLDIR = /kernel/drv
+
+OFLAGS	= -O2 -fno-inline
+KFLAGS	= -ffreestanding -U_NO_LONGLONG -D_KERNEL
+DFLAGS	= -DDEBUG -DDEBUG_LEVEL=2 -UGEM_DEBUG_LEVEL -USANITY \
+	  -UTDU_TEST
+AFLAGS	= -Di86pc -UIOCACHE
+CFGFLAGS = -DMAP_MEM -DGEM_GIGA -DOPT_TDU_INTR -DTX_DELAYED_INTR -DNEW_TX_BBUF
+VFLAGS	= -DVERSION='"${VERSION}"'
+
+CFLAGS	= ${OFLAGS} ${KFLAGS} ${AFLAGS} ${DFLAGS} ${CFGFLAGS} ${VFLAGS}
+
+CC	= gcc
+LD	= /usr/ccs/bin/ld
+
+include ./Makefile.common
