@@ -3,11 +3,6 @@
 #
 DRV	= em
 
-#ONUTSDIR = /home/mrym/opensolaris/ws-b124/usr/src/uts
-#ONUTSDIR = /home/mrym/opensolaris/ws-b148/usr/src/uts/
-CROSS_KERNEL_HEADERS = -I $(ONUTSDIR)/common -I$ $(ONUTSDIR)/intel
-
-#KFLAGS_COMMON += $(CROSS_KERNEL_HEADERS)
 KFLAGS_SUNCC += -erroff=E_STATEMENT_NOT_REACHED,E_INTEGER_OVERFLOW_DETECTED
 
 include version
