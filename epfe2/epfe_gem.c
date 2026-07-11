@@ -1083,9 +1083,9 @@ epfe_tx_desc_init(struct gem_dev *dp, int slot)
 	tfdp->desc.desc_ctl = 0;
 #if MAXTXFRAGS > 1
 	/* make a link to the fragment descriptor array */
-	addr = ((uint32_t)dp->tx_ring_dma)
+	addr = ((long)dp->tx_ring_dma)
 	    + slot * sizeof (struct epic_tfd)
-	    + ((uint32_t)&((struct epic_tfd *)NULL)->nfrags);
+	    + ((long)&((struct epic_tfd *)NULL)->nfrags);
 	tfdp->desc.desc_buf = LE_32(addr);
 #else
 #ifdef SANITY
