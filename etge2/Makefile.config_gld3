@@ -3,13 +3,9 @@
 #
 DRV	= etge
 include version
-#ONUTSDIR = /home/mrym/opensolaris/latest/onnv-gate/usr/src/uts
-ONUTSDIR = /home/mrym/opensolaris/ws-b124/usr/src/uts
-PUTBACKDIR = $(ONUTSDIR}/common/io/etge
 
 DFLAGS	= -DDEBUG -DDEBUG_LEVEL=1 -DGEM_DEBUG_LEVEL=0 -UTEST_RX_EMPTY \
 	  -UDEBUG_RESUME -UTEST_LATMEN \
-	  -I ${ONUTSDIR}/common -I ${ONUTSDIR}/intel \
 	  -erroff=E_STATEMENT_NOT_REACHED,E_INTEGER_OVERFLOW_DETECTED
 #
 # CONFIG_OFFLOAD doesn't work
