@@ -1769,7 +1769,7 @@ static	struct dev_ops icpt_ops = {
 	nodev,		/* devo_reset */
 	&cb_icpt_ops,	/* devo_cb_ops */
 	NULL,		/* devo_bus_ops */
-	gem_power.	/* devo_power */
+	gem_power,	/* devo_power */
 #if DEVO_REV >= 4
 	gem_quiesce,	/* devo_quiesce */
 #endif
