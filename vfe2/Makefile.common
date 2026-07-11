@@ -61,7 +61,6 @@ dist:
 	/usr/sbin/install -f ${DISTDIR} -m 444 version
 	/usr/sbin/install -f ${DISTDIR} -m 444 Makefile.config_gld2
 	/usr/sbin/install -f ${DISTDIR} -m 444 Makefile.config_gld3
-	/usr/sbin/install -f ${DISTDIR} -m 444 Makefile.config_gld3os
 	/usr/sbin/install -f ${DISTDIR} -m 444 Makefile.i386_gcc
 	/usr/sbin/install -f ${DISTDIR} -m 444 Makefile.i386_suncc
 	/usr/sbin/install -f ${DISTDIR} -m 444 Makefile.amd64_gcc
