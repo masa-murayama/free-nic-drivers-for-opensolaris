@@ -1,1 +1,1 @@
-Makefile.amd64_suncc
+Makefile.amd64_gcc
