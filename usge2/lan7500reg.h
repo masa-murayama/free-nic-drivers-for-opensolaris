@@ -1,0 +1,468 @@
+#ifndef __LAN7500REG_H__
+#define	__LAN7500REG_H__
+
+/*
+ * Tx packet header
+ */
+/* Tx command words */
+#define	TXHDR0_LSO			0x08000000U
+#define	TXHDR0_IPE			0x04000000U
+#define	TXHDR0_TPE			0x02000000U
+#define	TXHDR0_IVTG			0x01000000U
+#define	TXHDR0_RVTG			0x00800000U
+#define	TXHDR0_FCS			0x00400000U
+#define	TXHDR0_LEN			0x000fffffU
+
+#define	TXHDR1_MSS			0x3fff0000U
+#define		TXHDR1_MSS_SHIFT	16
+#define	TXHDR1_VTAG			0x0000ffffU
+
+/*
+ * Rx packet header
+ */
+/* Rx command words */
+#define	RXHDR0_ICE			0x80000000U
+#define	RXHDR0_TCE			0x40000000U
+#define	RXHDR0_IPV			0x20000000U
+#define	RXHDR0_PID			0x18000000U
+#define		RXHDR0_PID_SHIFT	27
+#define		RXHDR0_PID_NIP		(0U << RXHDR0_PID_SHIFT)
+#define		RXHDR0_PID_TCP		(1U << RXHDR0_PID_SHIFT)
+#define		RXHDR0_PID_UDP		(2U << RXHDR0_PID_SHIFT)
+#define		RXHDR0_PID_PP		(3U << RXHDR0_PID_SHIFT)
+#define	RXHDR0_PFF			0x04000000U
+#define	RXHDR0_BAM			0x02000000U
+#define	RXHDR0_MAM			0x01000000U
+#define	RXHDR0_FVTG			0x00800000U
+#define	RXHDR0_RED			0x00400000U
+#define	RXHDR0_RWT			0x00200000U
+#define	RXHDR0_RUNT			0x00100000U
+#define	RXHDR0_LONG			0x00080000U
+#define	RXHDR0_RXE			0x00040000U
+#define	RXHDR0_DRB			0x00020000U
+#define	RXHDR0_FCS			0x00010000U
+#define	RXHDR0_UAM			0x00008000U
+#define	RXHDR0_LCSM			0x00004000U
+#define	RXHDR0_LEN			0x00003fffU
+
+#define	RXHDR1_CSUM			0xffff0000U
+#define		RXHDR1_CSUM_SHIFT		16
+#define	RXHDR1_VTAG			0x0000ffffU
+
+/*
+ * Register offset
+ */
+#define	IDREV				0x0000
+#define	FPGAREV				0x0004
+#define	BONDCTL				0x0008
+#define	INTS				0x000c
+#define	HWCFG				0x0010
+#define	PMCSR				0x0014
+#define	LEDCFG				0x0018
+#define	GPIO				0x001c
+#define	GPIO_WAKE			0x0020
+#define	DPSEL				0x0024
+#define	DPCMD				0x0028
+#define	DPADDR				0x002c
+#define	DPDATA				0x0030
+#define	BURSTLMT			0x0034
+#define	INTCTL				0x0038
+#define	RXDELAY				0x003c
+#define	EEPROM				0x0040
+#define	EEPDATA				0x0044
+#define	RXFCTL				0x0060
+#define	VLANTYPE			0x0064
+#define	RXFIFO				0x0090
+#define	TXFIFO				0x0094
+#define	RXFIFOEND			0x0098
+#define	TXFIFOEND			0x009c
+#define	FIFOTHSH			0x00a0
+#define	PHYCSR				0x0100
+#define	RXCTL				0x0104
+#define	TXCTL				0x0108
+#define	FLCTL				0x010c
+#define	RAND				0x0110
+#define	ESTATUS				0x0114
+#define MII_ACCESS			0x0120
+#define MII_DATA			0x0124
+#define	WUCSR				0x0140
+#define	WUF_CFGX			0x0144
+#define	WUF_MASKX			0x0170
+#define	PMAF_BASE			0x0300
+#define	WUCSR2				0x0500
+
+/* Interrupt status register, offset 0x000c */
+#define	INTS_RDFO_INT			0x00400000U
+#define	INTS_TXE_INT			0x00200000U
+#define	INTS_MACRTO_INT			0x00100000U
+#define	INTS_TX_DIS_INT			0x00080000U
+#define	INTS_RX_DIS_INT			0x00040000U
+#define	INTS_PHY_INT			0x00020000U
+#define	INTS_MAC_ERR_INT		0x00008000U
+#define	INTS_TDFU			0x00004000U
+#define	INTS_TDFO			0x00002000U
+#define	INTS_GPIOS			0x00000fffU
+#define	INTS_CLEAR_ALL			0xffffffffU
+
+/* Hardware configuration register, offset 0x0010 */
+#define	HWCFG_SMDET_STS			0x00008000U
+#define	HWCFG_SMDET_EN			0x00004000U
+#define	HWCFG_EEM			0x00002000U
+#define	HWCFG_RST_PROTECT		0x00001000U
+#define	HWCFG_PORT_SWAP			0x00000800U
+#define	HWCFG_PHY_BOOST			0x00000600U
+#define		HWCFG_PHY_BOOST_SHIFT	9
+#define		HWCFG_PHY_BOOST_NORMAL	(0U << HWCFG_PHY_BOOST_SHIFT)
+#define		HWCFG_PHY_BOOST_4	(1U << HWCFG_PHY_BOOST_SHIFT)
+#define		HWCFG_PHY_BOOST_8	(2U << HWCFG_PHY_BOOST_SHIFT)
+#define		HWCFG_PHY_BOOST_12	(3U << HWCFG_PHY_BOOST_SHIFT)
+#define	HWCFG_LEDB			0x00000100U
+#define	HWCFG_BIR			0x00000080U
+#define	HWCFG_SBP			0x00000040U
+#define	HWCFG_IME			0x00000020U
+#define	HWCFG_MEF			0x00000010U
+#define	HWCFG_ETC			0x00000008U
+#define	HWCFG_BCE			0x00000004U
+#define	HWCFG_LRST			0x00000002U
+#define	HWCFG_SRST			0x00000001U
+
+#define	HWCFG_BITS	\
+	"\020"	\
+	"\020SMDET_STS"	\
+	"\017SMDET_EN"	\
+	"\016EEM"	\
+	"\015RST_PROTECT"	\
+	"\014PORT_SWAP"	\
+	"\011LEDB"	\
+	"\010BIR"	\
+	"\007SBP"	\
+	"\006IME"	\
+	"\005MEF"	\
+	"\004ETC"	\
+	"\003BCE"	\
+	"\002LRST"	\
+	"\001SRST"
+
+/* Power management control status register, 0x0014 */
+#define	PMCSR_PHY_PWRUP			0x00000400U
+#define	PMCSR_RES_CLR_WKP_EN		0x00000100U
+#define	PMCSR_DEV_RDY			0x00000080U
+#define	PMCSR_SUS_MODE			0x00000060U
+#define		PMCSR_SUS_MODE_SHIFT		5
+#define		PMCSR_SUS_MODE_0		(0U << PMCSR_SUS_MODE_SHIFT)
+#define		PMCSR_SUS_MODE_1		(1U << PMCSR_SUS_MODE_SHIFT)
+#define		PMCSR_SUS_MODE_2		(2U << PMCSR_SUS_MODE_SHIFT)
+#define		PMCSR_SUS_MODE_3		(3U << PMCSR_SUS_MODE_SHIFT)
+#define	PMCSR_PHY_RST			0x00000010U
+#define	PMCSR_WOL_EN			0x00000008U
+#define	PMCSR_ED_EN			0x00000004U
+#define	PMCSR_WUPS			0x00000003U
+#define		PMCSR_WUPS_NO			0U
+#define		PMCSR_WUPS_ED			1U
+#define		PMCSR_WUPS_WOL			2U
+#define		PMCSR_WUPS_MULTI		3U
+
+#define	PMCSR_BITS	\
+	"\020"	\
+	"\013PHY_PWRUP"	\
+	"\011RES_CLR_WKP_EN"	\
+	"\010DEV_RDY"	\
+	"\004WOL_EN"	\
+	"\003ED_EN"
+
+/* LED configuration register, offset 0x018 */
+#define	LEDCFG_LED2_FUN_SEL		0x80000000U
+#define	LEDCFG_LED10_FUN_SEL		0x40000000U
+#define	LEDCFG_LEDGPIO_EN		0x0000f000U
+#define	LEDCFG_LEDGPIO_EN_0		0x00001000U
+#define	LEDCFG_LEDGPIO_EN_1		0x00002000U
+#define	LEDCFG_LEDGPIO_EN_2		0x00004000U
+#define	LEDCFG_LEDGPIO_EN_3		0x00008000U
+#define	LEDCFG_GPBUF			0x00000f00U
+#define	LEDCFG_GPBUF_0			0x00000100U
+#define	LEDCFG_GPBUF_1			0x00000200U
+#define	LEDCFG_GPBUF_2			0x00000400U
+#define	LEDCFG_GPBUF_3			0x00000800U
+#define	LEDCFG_GPDIR			0x000000f0U
+#define	LEDCFG_GPDIR_0			0x00000010U
+#define	LEDCFG_GPDIR_1			0x00000020U
+#define	LEDCFG_GPDIR_2			0x00000040U
+#define	LEDCFG_GPDIR_3			0x00000080U
+#define	LEDCFG_GPDATA			0x0000000fU
+#define	LEDCFG_GPDATA_0			0x00000001U
+#define	LEDCFG_GPDATA_1			0x00000002U
+#define	LEDCFG_GPDATA_2			0x00000004U
+#define	LEDCFG_GPDATA_3			0x00000008U
+
+/* GPIO register, offset */
+#define	GPIO_GPEN			0xff000000U
+#define		GPIO_SHIFT			24
+#define	GPIO_GPBUF			0x00ff0000U
+#define	GPIO_GPDIR			0x0000ff00U
+#define	GPIO_GPDATA			0x000000ffU
+
+/* GPIO_WAKE register, offset 0x20 */
+#define	GPIO_WAKE_PHY_LINKUP_EN		0x80000000U
+#define	GPIO_WAKE_POL			0x0fff0000U
+#define		GPIO_WAKE_POL_SHIFT		16
+#define	GPIO_WAKE_WK			0x00000fffU
+#define		GPIO_WAKE_WK_SHIFT		0
+
+/* Dataport select register, offset 0x24 */
+#define	DPSEL_DPRDY			0x80000000U
+#define	DPSEL_RSEL			0x0000000fU
+#define	DPSEL_URX			0x00000000
+#define	DPSEL_VHF			0x00000001
+#define		DPSEL_VHF_HASH_LEN		16
+#define		DPSEL_VHF_VLAN_LEN		128
+#define	DPSEL_LSO_HEAD			0x00000002
+#define	DPSEL_FCT_RX			0x00000003
+#define	DPSEL_FCT_TX			0x00000004
+#define	DPSEL_DESCRIPTOR		0x00000005
+#define	DPSEL_WOL			0x00000006
+
+/* Data port command register, offset 0x28 */
+#define	DPCMD_WRITE			0x00000001U
+#define	DPCMD_READ			0x00000000U
+
+/* Burst limit register, offset 0x34 */
+#define	BURSTLMT_MASK			0x0000000fU
+
+/* INTCTL register, offset 0x38 */
+#define	INTCTL_INTEP_ON			0x80000000U
+#define	INTCTL_RDFO_EN			0x00400000U
+#define	INTCTL_TXE_EN			0x00200000U
+#define	INTCTL_MACROTO_EN		0x00100000U
+#define	INTCTL_TX_DIS_EN		0x00080000U
+#define	INTCTL_RX_DIS_EN		0x00040000U
+#define	INTCTL_PHY_EN			0x00020000U
+#define	INTCTL_MAC_ERR_EN		0x00008000U
+#define	INTCTL_TDFU_EN			0x00004000U
+#define	INTCTL_TDFO_EN			0x00002000U
+#define	INTCTL_RX_FIFO_EN		0x00001000U
+#define	INTCTL_GPIOX_EN			0x00000fffU
+
+/* rx delay register, offset 0x3c */
+#define	RXDELAY_MASK			0xffffU
+
+/* eeprom command register */
+#define	EEPCMD_BUSY			0x80000000U
+#define	EEPCMD_MASK			0x70000000U
+#define	EEPCMD_READ			0x00000000U
+#define	EEPCMD_EWDS			0x10000000U
+#define	EEPCMD_EWEN			0x20000000U
+#define	EEPCMD_WRITE			0x30000000U
+#define	EEPCMD_WRAL			0x40000000U
+#define	EEPCMD_ERASE			0x50000000U
+#define	EEPCMD_ERAL			0x60000000U
+#define	EEPCMD_RELOAD			0x70000000U
+#define	EEPCMD_TIMEOUT			0x00000400U
+#define	EEPCMD_LOADED			0x00000200U
+#define	EEPCMD_ADDR			0x000001ffU
+
+#define	MAX_EEPROM_SIZE			512
+
+#define	EEPDATA_MASK			0x000000ff
+
+/* Rx filter control register, offset 0x60 */
+#define	RXFCTL_TCPUDPCK			0x00001000U
+#define	RXFCTL_IPCK			0x00000800U
+#define	RXFCTL_AB			0x00000400U
+#define	RXFCTL_AM			0x00000200U
+#define	RXFCTL_AU			0x00000100U
+#define	RXFCTL_VS			0x00000080U
+#define	RXFCTL_UF			0x00000040U
+#define	RXFCTL_VF			0x00000020U
+#define	RXFCTL_SPF			0x00000010U
+#define	RXFCTL_MHF			0x00000008U
+#define	RXFCTL_DHF			0x00000004U
+#define	RXFCTL_DPF			0x00000002U
+#define	RXFCTL_RST			0x00000001U
+
+#define	RXFCTL_BITS	\
+	"\020"	\
+	"\015TCPUDP_CKM"	\
+	"\014IP_CKM"	\
+	"\013AB	"	\
+	"\012AM"	\
+	"\011AU"	\
+	"\010VS"	\
+	"\007UF"	\
+	"\006VF"	\
+	"\005SPF"	\
+	"\004MHF"	\
+	"\003DHF"	\
+	"\002DPF"	\
+	"\001RST_RF"
+
+
+/* VLAN type register, offset 0x64 */
+#define	VLANTYPE_MASK			0x0000ffffU
+
+/* Rx fifo control status register, offset 0x90 */
+#define	RXFIFO_EN			0x80000000U
+#define	RXFIFO_RST			0x40000000U
+#define	RXFIFO_SBF			0x02000000U
+#define	RXFIFO_OVERFLOW			0x01000000U
+#define	RXFIFO_FRM_DROP			0x00800000U
+#define	RXFIFO_NOT_EMPTY		0x00400000U
+#define	RXFIFO_EMPTY			0x00200000U
+#define	RXFIFO_DISABLED			0x00100000U
+#define	RXFIFO_RXUSED			0x0000ffffU
+
+/* Tx fifo control status register, offset 0x94 */
+#define	TXFIFO_EN			0x80000000U
+#define	TXFIFO_RST			0x40000000U
+#define	TXFIFO_NOT_EMPTY		0x00400000U
+#define	TXFIFO_EMPTY			0x00200000U
+#define	TXFIFO_DISABLED			0x00100000U
+#define	TXFIFO_TXUSED			0x0000ffffU
+
+
+/* Rx FIFO END register, offset 0x98 */
+#define	RXFIFOEND_MASK			0x0000007fU
+
+/* Tx FIFO END register, offset 0x9c */
+#define	TXFIFOEND_MASK			0x0000003fU
+
+
+/* Fifo threshold register, offset 0xa0 */
+#define	FIFOTHSH_OFF			0x00007f00U
+#define		FIFOTHSH_OFF_SHIFT	8
+#define	FIFOTHSH_ON			0x0000007fU
+#define		FIFOTHSH_ON_SHIFT	0
+
+/* MAC CSRs */
+
+/* PHY control status register */
+#define	PHYCSR_ADP			0x00002000U
+#define	PHYCSR_ADD			0x00001000U
+#define	PHYCSR_ASD			0x00000800U
+#define	PHYCSR_INT_LOOP			0x00000400U
+#define	PHYCSR_BOLMT			0x000000c0U
+#define	PHYCSR_FDPX			0x00000008U
+#define	PHYCSR_CFG			0x00000006U
+#define		PHYCSR_CFG_SHIFT		1
+#define		PHYCSR_CFG_10			(0U << PHYCSR_CFG_SHIFT)
+#define		PHYCSR_CFG_100			(1U << PHYCSR_CFG_SHIFT)
+#define		PHYCSR_CFG_1000			(2U << PHYCSR_CFG_SHIFT)
+#define	PHYCSR_RST			0x00000001U
+
+#define	PHYCSR_BITS	\
+	"\020"	\
+	"\016ADP"	\
+	"\015ADD"	\
+	"\014ASD"	\
+	"\013INT_LOOP"	\
+	"\004FDPX"	\
+	"\001RST"
+
+
+/* rx control register, offset 0x104 */
+#define	RXCTL_MAXSIZE			0x3fff0000U
+#define		RXCTL_MAXSIZE_SHIFT		16
+#define	RXCTL_FCS_STRIP			0x00000010U
+#define	RXCTL_FSE			0x00000004U
+#define	RXCTL_RXD			0x00000002U
+#define	RXCTL_EN			0x00000001U
+
+/* tx control register, offset 0x108 */
+#define	TXCTL_BFCS			0x00000004U
+#define	TXCTL_TXD			0x00000002U
+#define	TXCTL_EN			0x00000001U
+
+/* flow control register, offset 0x10c */
+#define	FLCTL_FORCE			0x80000000U
+#define	FLCTL_TXEN			0x40000000U
+#define	FLCTL_RXEN			0x20000000U
+#define	FLCTL_FPF			0x10000000U
+#define	FLCTL_TXPAUSETIME		0x0000ffffU
+
+/* random seed register, offset 0x110 */
+#define	RAND_MASK			0x0000ffffU
+
+/* error status register, offset 0x114 */
+#define	ESTATUS_FCS			0x00000100U
+#define	ESTATUS_LFRM			0x00000080U
+#define	ESTATUS_RUNT			0x00000040U
+#define	ESTATUS_COLLISION		0x00000010U
+#define	ESTATUS_ALIGN			0x00000008U
+#define	ESTATUS_URUN			0x00000004U
+
+/* RX_ADDRH register, offset 0x118 */
+#define	RX_ADDRH_MASK			0x0000ffffU
+
+/* MII_ACCESS register, offset 0x120 */
+#define MII_ACCESS_PHY_ADDR		0x0000f800U
+#define		MII_ACCESS_PHY_ADDR_SHIFT	11
+#define MII_ACCESS_REG_ADDR		0x000007c0U
+#define		MII_ACCESS_REG_ADDR_SHIFT	6
+#define MII_ACCESS_READ			0x00000000U
+#define MII_ACCESS_WRITE		0x00000002U
+#define MII_ACCESS_BUSY			0x00000001U
+
+/* MII_DATA register, offset 0x124 */
+#define MII_DATA_MASK			0x0000ffffU
+
+/* Wakeup control status register, 0ffset 0x140 */
+#define	WUCSR_PFDA_FR			0x00000080U
+#define	WUCSR_WUFR			0x00000040U
+#define	WUCSR_MPR			0x00000020U
+#define	WUCSR_BCAST_FR			0x00000010U
+#define	WUCSR_PFDA_EN			0x00000008U
+#define	WUCSR_WUEN			0x00000004U
+#define	WUCSR_MPEN			0x00000002U
+#define	WUCSR_BCST_EN			0x00000001U
+
+/* Wakeup configuration register, offset 0x144 */
+#define	WUF_CFGX_EN			0x80000000U
+#define	WUF_CFGX_ATYPE			0x03000000U
+#define	WUF_CFGX_ATYPE_UNICAST		0x00000000U
+#define	WUF_CFGX_ATYPE_MULTICAST	0x02000000U
+#define	WUF_CFGX_ATYPE_ALL		0x03000000U
+#define	WUF_CFGX_PATTERN_OFFSET		0x007f0000U
+#define	WUF_CFGX_PATTERN_OFFSET_SHIFT	16
+#define	WUF_CFGX_CRC16			0x0000ffffU
+#define	WUF_NUM				8
+
+/* WUF_MASKX register, offset 0x170 */
+#define	WUF_MASKX_AVALID		0x80000000U
+#define	WUF_MASKX_ATYPE			0x40000000U
+
+
+/* Perfect match address filter register, offset 0x300 */
+#define	PMAF_VALID			0x80000000U
+#define	PMAF_TYPE			0x40000000U
+#define	PMAF_ADDRHI			0x0000ffffU
+#define	PMAF_ADDRLO			0xffffffffU
+
+#define	PMAF_ENTRY_NUM		33
+
+
+/* WUCSR2 register, offset 0x500 */
+#define	WUCSR2_NS_RCD			0x00000040U
+#define	WUCSR2_ARP_RCD			0x00000020U
+#define	WUCSR2_TCPSYN_RCD		0x00000010U
+#define	WUCSR2_NS_OFFLOAD		0x00000004U
+#define	WUCSR2_ARP_OFFLOAD		0x00000002U
+#define	WUCSR2_TCPSYN_OFFLOAD		0x00000001U
+
+
+/* USB Vendor Requests */
+#define	USB_VENDOR_REQUEST_WRITE_REGISTER	0xa0U
+#define	USB_VENDOR_REQUEST_READ_REGISTER	0xa1U
+#define	USB_VENDOR_REQUEST_GET_STATS		0xa2U
+
+/* Interrupt Endpoint status word bitfields */
+#define	INTEP_RDFO_INT			0x00400000U
+#define	INTEP_TXE_INT			0x00200000U
+#define	INTEP_TX_DIS_INT		0x00080000U
+#define	INTEP_RX_DIS_INT		0x00040000U
+#define	INTEP_PHY_INT			0x00020000U
+#define	INTEP_MAC_ERR_INT		0x00008000U
+#define	INTEP_RX_FIFO_DATA_INT		0x00001000U
+
+/* EEPROM offset */
+#define	EEPROM_MAC_OFFSET	1
+
+#endif /* __LAN7500REG_H__ */
