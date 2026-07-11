@@ -3,12 +3,10 @@
 #
 DRV	= ae
 include version
-ONUTSDIR = /home/mrym/opensolaris/ws-b124/usr/src/uts
 
 DFLAGS	= -DDEBUG -DDEBUG_LEVEL=0 -UGEM_DEBUG_LEVEL \
 	  -UDEBUG_RESUME -UDEBUG_MULTIFRAGS \
 	  -UCONFIG_ANAS \
-	  -I ${ONUTSDIR}/common -I ${ONUTSDIR}/intel \
 	  -UCONFIG_HW_LINK_DETECTION \
 	  -erroff=E_STATEMENT_NOT_REACHED,E_INTEGER_OVERFLOW_DETECTED
 
